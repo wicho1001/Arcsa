@@ -23,4 +23,4 @@ app.use(function (req, res, next) {
 // rutas
 app.use('/user', User)
 
-app.listen(PORT, () => console.log(`Conectado a Localhost:${PORT}`))
+app.listen(PORT, () => console.log(`Conectado a localhost:${PORT}`))

@@ -20,6 +20,25 @@ function createUser (req, res, next) {
   })
 }
 
+function update (req, res, next) {
+  UserModel.findByIdAndUpdate(req.params.id, { Admin: req.body.Admin }, (err, userInfo) => {
+    if (err) {
+      res.status(404).json({ status: 'error', message: err }, { data: null })
+    } else {
+      res.status(200).json({ status: 'success', message: 'usuario modificado', data: { user: userInfo } })
+    }
+  })
+}
+
+function verifyAdmin (req, res, next) {
+  console.log(req.headers.admin)
+  if (req.headers.admin === 'true') {
+    next()
+  } else {
+    res.status(400).json({ status: 'error', message: 'No eres admin no puedes hacer eso' })
+  }
+}
+
 function authenticate (req, res, next) {
   UserModel.find({ Correo: req.headers.correo }, (err, UserInfo) => {
     if (err) {
@@ -50,5 +69,7 @@ module.exports = {
   findAll,
   createUser,
   authenticate,
-  verify
+  verify,
+  update,
+  verifyAdmin
 }
