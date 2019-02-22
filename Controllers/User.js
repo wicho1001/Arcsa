@@ -6,7 +6,7 @@ function findAll (req, res, next) {
     if (err) {
       throw err
     }
-    res.send(users)
+    res.status(200).json({ status: 'success', message: 'Usuario Encontrado', data: { user: users } })
   })
 }
 
