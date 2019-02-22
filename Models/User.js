@@ -15,6 +15,7 @@ let UserSchema = mongoose.Schema({
   },
   Avatar: {
     type: String,
+    data: Buffer,
     required: false
   },
   Correo: {
@@ -23,10 +24,13 @@ let UserSchema = mongoose.Schema({
   },
   Password: {
     type: String,
+    minlength: 10,
+    maxlength: 60,
     required: true
   },
   Admin: {
     type: Boolean,
+    default: false,
     required: true
   }
 })
