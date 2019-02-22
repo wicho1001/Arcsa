@@ -65,11 +65,23 @@ function verify (req, res, next) {
       }
     })
 }
+
+function deleteUser (req, res, next) {
+  UserModel.find({ _id: req.params.id }, (err, res) => {
+    if (err) {
+      res.status(400).json({ status: 'error', message: err.message, data: null })
+    } else {
+      res.remove()
+    }
+  })
+}
+
 module.exports = {
   findAll,
   createUser,
   authenticate,
   verify,
   update,
-  verifyAdmin
+  verifyAdmin,
+  deleteUser
 }
