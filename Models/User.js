@@ -3,31 +3,35 @@ const mongoose = require('mongoose')
 let UserSchema = mongoose.Schema({
   Nombre: {
     type: String,
-    require: true
+    required: true
   },
   Edad: {
     type: Number,
-    require: true
+    required: true
   },
   Username: {
     type: String,
-    require: true
+    required: true
   },
   Avatar: {
     type: String,
-    require: false
+    data: Buffer,
+    required: false
   },
   Correo: {
     type: String,
-    require: true
+    required: true
   },
   Password: {
     type: String,
-    require: true
+    minlength: 10,
+    maxlength: 60,
+    required: true
   },
   Admin: {
     type: Boolean,
-    require: true
+    default: false,
+    required: true
   }
 })
 
